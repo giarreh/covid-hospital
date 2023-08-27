@@ -89,7 +89,7 @@ export default function App() {
   LogBox.ignoreLogs(["Setting a timer for a long period of time"]);
   LogBox.ignoreLogs(["AsyncStorage has been extracted from react-native"]);
   LogBox.ignoreLogs(["This can break usage such as persisting and restoring state."]);
-
+  LogBox.ignoreLogs(["AsyncStorage has been extracted from react-native core and will be removed in a future release."]);
   useEffect(() => {
     const interval = setInterval(async () => {
       const roomCollectionRef = collection(db, "rooms");
@@ -119,6 +119,11 @@ export default function App() {
     <NavigationContainer theme={myTheme}>
       <Stack.Navigator>
         <Stack.Screen
+          options={{ headerShown: false }}
+          name="Login"
+          component={LoginScreen}
+        />
+        <Stack.Screen
           options={{ headerShown: false, title: "" }}
           name="TabNavigator"
           component={TabNavigator}
@@ -147,11 +152,6 @@ export default function App() {
           options={{ title: "" }}
           name="AddMeasurements"
           component={AddMeasurementsScreen}
-        />
-        <Stack.Screen
-          options={{ headerShown: false }}
-          name="Login"
-          component={LoginScreen}
         />
       </Stack.Navigator>
     </NavigationContainer>

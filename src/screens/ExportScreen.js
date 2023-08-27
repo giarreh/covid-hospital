@@ -1,4 +1,6 @@
 import { useNavigation } from "@react-navigation/native";
+import { Platform } from 'react-native';
+
 import React, { useEffect, useState } from "react";
 import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import { Picker } from "@react-native-picker/picker";
@@ -26,24 +28,41 @@ const ExportScreen = () => {
   }, []);
 
   const downloadData = async () => {
+  try {
+    if (!selectedValue) {
+      alert("Please select a patient.");
+      return;
+    }
+
     const measurement_data = await getDocs(
       query(measurementsCollectionRef, where("patientID", "==", selectedValue.id))
     );
+
     const measurements = measurement_data.docs.map((doc) => ({
       ...doc.data(),
       id: doc.id,
     }));
 
-    const result = await FileSystem.writeAsStringAsync(
-      FileSystem.documentDirectory +
-        String(new Date().toISOString().split("T")[0])+ "-" + String(selectedValue.id) + 
-        ".json",
-      JSON.stringify(measurements)
-    );
-    if(result == null){
-      alert("success!");
-    }
-  };
+    const fileContent = JSON.stringify(measurements);
+    const fileName = `${new Date().toISOString().split("T")[0]}-${selectedValue.id}.json`;
+
+    const directory = Platform.OS === 'android'
+      ? `${FileSystem.documentDirectory}exports/`
+      : FileSystem.documentDirectory;
+
+    const filePath = `${directory}${fileName}`;
+
+    await FileSystem.makeDirectoryAsync(directory, { intermediates: true });
+    await FileSystem.writeAsStringAsync(filePath, fileContent);
+
+    console.log("File written successfully:", filePath);
+    console.log("File Content: ", '\n', fileContent);
+    alert("Success! Data exported.");
+  } catch (error) {
+    console.error("Error exporting data:", error);
+    alert("An error occurred while exporting data.");
+  }
+};
 
   return (
     <View>
