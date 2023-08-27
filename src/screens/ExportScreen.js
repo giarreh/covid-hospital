@@ -4,7 +4,6 @@ import { Platform } from 'react-native';
 import React, { useEffect, useState } from "react";
 import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import { Picker } from "@react-native-picker/picker";
-import { auth } from "../../firebase";
 import { db } from "../../firebase";
 import { collection, getDocs, query, where } from "firebase/firestore";
 import * as FileSystem from "expo-file-system";

@@ -1,23 +1,16 @@
 import { useNavigation } from "@react-navigation/native";
-import React, { useEffect, useState } from "react";
+import React, {useState } from "react";
 import {
   StyleSheet,
   Text,
   View,
   TextInput,
-  KeyboardAvoidingView,
   TouchableOpacity,
   Keyboard,
 } from "react-native";
 import { db } from "../../firebase";
 import {
   collection,
-  getDocs,
-  updateDoc,
-  orderBy,
-  limit,
-  query,
-  where,
   addDoc,
 } from "firebase/firestore";
 import {Entypo, FontAwesome, FontAwesome5,} from '@expo/vector-icons';
@@ -25,9 +18,6 @@ import {Entypo, FontAwesome, FontAwesome5,} from '@expo/vector-icons';
 const AddMeasurementsScreen = ({ route }) => {
   const navigation = useNavigation();
   const { data } = route.params;
-  const [measurements, setMeasurements] = useState([]);
-  const [fname, setFname] = useState("");
-  const [lname, setLname] = useState("");
   const [heartrate, setHeartrate] = useState();
   const [oxygenlvl, setOxygenlvl] = useState();
   const [breathrate, setBreathrate] = useState();
@@ -45,6 +35,10 @@ const AddMeasurementsScreen = ({ route }) => {
     }).then(
       Keyboard.dismiss()
     )
+    if(result){
+      navigation.navigate("Room", { data: data });
+      alert("Measurements added successfully");
+    }
   };
 
   return (

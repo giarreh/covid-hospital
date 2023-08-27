@@ -1,29 +1,15 @@
-import { useNavigation } from "@react-navigation/native";
-import React, { useEffect, useState } from "react";
+import React, {useState } from "react";
 import {
   StyleSheet,
   Text,
   TouchableOpacity,
   View,
-  FlatList,
-  Dimensions,
   TextInput,
-  KeyboardAvoidingView,
 } from "react-native";
 import { db } from "../../firebase";
 import {
   collection,
-  getDoc,
-  getDocs,
   addDoc,
-  updateDoc,
-  deleteDoc,
-  doc,
-  orderBy,
-  limit,
-  query,
-  where,
-  Timestamp,
 } from "firebase/firestore";
 
 const AddPatientScreen = () => {

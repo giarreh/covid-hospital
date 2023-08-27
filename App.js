@@ -1,9 +1,8 @@
-import { StatusBar } from "expo-status-bar";
-import { StyleSheet, Text, View } from "react-native";
-import { LogBox } from "react-native";
-import react, { useEffect } from "react";
 
-import { auth } from "./firebase";
+import { StyleSheet} from "react-native";
+import { LogBox } from "react-native";
+import { useEffect } from "react";
+
 import { db } from "./firebase";
 import {
   collection,
@@ -89,7 +88,7 @@ export default function App() {
   LogBox.ignoreLogs(["Setting a timer for a long period of time"]);
   LogBox.ignoreLogs(["AsyncStorage has been extracted from react-native"]);
   LogBox.ignoreLogs(["This can break usage such as persisting and restoring state."]);
-  LogBox.ignoreLogs(["AsyncStorage has been extracted from react-native core and will be removed in a future release."]);
+  LogBox.ignoreLogs(["AsyncStorage has been extracted from react-native core and will be removed in a future release. It can now be installed and imported from '@react-native-async-storage/async-storage' instead of 'react-native'. See https://github.com/react-native-async-storage/async-storage"]);
   useEffect(() => {
     const interval = setInterval(async () => {
       const roomCollectionRef = collection(db, "rooms");

@@ -4,25 +4,16 @@ import {
   StyleSheet,
   Text,
   TouchableOpacity,
-  View,
-  FlatList,
-  Dimensions,
   ScrollView,
 } from "react-native";
 import { db } from "../../firebase";
 import {
   collection,
-  getDoc,
   getDocs,
-  addDoc,
-  updateDoc,
-  deleteDoc,
-  doc,
   orderBy,
   limit,
   query,
   where,
-  Timestamp,
 } from "firebase/firestore";
 import { Entypo, FontAwesome, FontAwesome5 } from "@expo/vector-icons";
 const RoomScreen = ({ route }) => {

@@ -6,17 +6,12 @@ import {
   TouchableOpacity,
   View,
   FlatList,
-  ScrollView
 } from "react-native";
 import { auth } from "../../firebase";
 import { db } from "../../firebase";
 import {
   collection,
   getDocs,
-  addDoc,
-  updateDoc,
-  deleteDoc,
-  doc,
 } from "firebase/firestore";
 
 import RoomComponent from "../components/RoomComponent";

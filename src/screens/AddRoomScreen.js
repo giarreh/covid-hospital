@@ -1,14 +1,13 @@
-import React, { useEffect, useState } from "react";
+import React, {useState } from "react";
 import {
   StyleSheet,
   Text,
   TouchableOpacity,
   View,
   TextInput,
-  KeyboardAvoidingView,
 } from "react-native";
 import { db } from "../../firebase";
-import { collection, getDocs, addDoc } from "firebase/firestore";
+import { collection, addDoc } from "firebase/firestore";
 
 const AddRoomScreen = () => {
   const [NewRoomName, setNewRoomName] = useState("");

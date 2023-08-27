@@ -8,7 +8,7 @@ import {
   View,
 } from "react-native";
 import {
-  createUserWithEmailAndPassword,
+  //createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
 } from "firebase/auth";
 import { auth } from "../../firebase";

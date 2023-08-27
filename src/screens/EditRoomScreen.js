@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { useNavigation } from "@react-navigation/native";
 import {
   StyleSheet,
   Text,
@@ -11,16 +12,15 @@ import { db } from "../../firebase";
 import {
   collection,
   getDocs,
-  addDoc,
   updateDoc,
   doc,
 } from "firebase/firestore";
 import { Picker } from "@react-native-picker/picker";
 
 export default function EditRoomScreen({ route }) {
+  const navigation = useNavigation();
   const { item, data } = route.params;
   const roomID = item.item.id;
-  const [NewPatientID, setNewPatientID] = useState("");
   const [NewRoomName, setNewRoomName] = useState("");
   const [NewRoomNumber, setNewRoomNumber] = useState();
   const [selectedValue, setSelectedValue] = useState("");
@@ -75,6 +75,8 @@ export default function EditRoomScreen({ route }) {
       roomNumber: NewRoomNumber,
       patientID: "",
     });
+    alert("Patient removed from room");
+    navigation.navigate("TabNavigator"); 
   }
 
   return (

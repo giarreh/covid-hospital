@@ -3,9 +3,6 @@ import React, { useEffect, useState } from "react";
 import {
   StyleSheet,
   Text,
-  TouchableOpacity,
-  View,
-  FlatList,
   Dimensions,
   ScrollView,
 } from "react-native";
@@ -13,24 +10,13 @@ import { auth } from "../../firebase";
 import { db } from "../../firebase";
 import {
   collection,
-  getDoc,
   getDocs,
-  addDoc,
-  updateDoc,
-  deleteDoc,
-  doc,
   orderBy,
   limit,
   query,
   where,
-  Timestamp,
 } from "firebase/firestore";
 import { LineChart } from "react-native-chart-kit";
-import {
-  randomBreathRate,
-  randomheartRate,
-  randomOxygenSatLvl,
-} from "../utils/generateData";
 import {Entypo, FontAwesome, FontAwesome5} from '@expo/vector-icons';
 
 const DetailedRoomScreen = ({ route }) => {
@@ -79,14 +65,6 @@ const DetailedRoomScreen = ({ route }) => {
     return () => clearInterval(interval);
   }, []);
 
-  const handleSignOut = () => {
-    auth
-      .signOut()
-      .then(() => {
-        navigation.replace("Login");
-      })
-      .catch((error) => alert(error.message));
-  };
 
   const width = Dimensions.get("window").width;
   const height = 220;
